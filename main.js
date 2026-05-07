@@ -1179,6 +1179,12 @@ class Trashschedule extends utils.Adapter {
                             );
                     }
                 } catch (err) {
+                    if (`${err}`.includes('does not belong to street')) {
+                        this.log.debug(`[onMessage] ${obj.command} ignored stale house number: ${err}`);
+                        obj.callback && this.sendTo(obj.from, obj.command, '', obj.callback);
+                        return;
+                    }
+
                     this.log.error(`[onMessage] ${obj.command} err: ${err}`);
                     obj.callback && this.sendTo(obj.from, obj.command, `Error: ${err}`, obj.callback);
                 }

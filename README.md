@@ -57,6 +57,12 @@ iobroker add trashschedule
 ### **WORK IN PROGRESS**
 
 * (copilot) Adapter requires node.js >= 22 now
+* (Jailobeam) Added EBE Essen (`ebe-essen.de`) as `abfall.io` provider
+* (Jailobeam) Fixed `abfall.io` handling for providers without districts
+* (Jailobeam) Fixed `abfall.io` house number resolution
+* (Jailobeam) Fixed stale `districtId` values after provider changes
+* (Jailobeam) Cleared dependent `abfall.io` fields in Admin UI on selection changes
+* (Jailobeam) Increased `Lobbe.app` timeout to `10000ms`
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 
 ### 5.3.0 (2026-04-22)

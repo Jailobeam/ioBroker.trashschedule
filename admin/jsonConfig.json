@@ -260,9 +260,10 @@
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\"}",
                     "onChange": {
                         "alsoDependsOn": [
-                            "apiAbfallioProvider"
+                            "apiAbfallioProvider",
+                            "_apiAbfallioCityContext"
                         ],
-                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider ? '' : data.apiAbfallioCityId",
+                        "calculateFunc": "data.apiAbfallioCityId && data._apiAbfallioCityContext && data._apiAbfallioCityContext !== String(data.apiAbfallioProvider) ? '' : data.apiAbfallioCityId",
                         "ignoreOwnChanges": true
                     },
                     "freeSolo": false,
@@ -276,6 +277,19 @@
                     "xl": 6,
                     "label": "City"
                 },
+                "_apiAbfallioCityContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioCityId ? String(data.apiAbfallioProvider || '') : ''",
+                        "ignoreOwnChanges": true
+                    }
+                },
                 "apiAbfallioDistrictId": {
                     "newLine": true,
                     "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || data.apiAbfallioProvider === 'essen'",
@@ -285,9 +299,10 @@
                     "onChange": {
                         "alsoDependsOn": [
                             "apiAbfallioProvider",
-                            "apiAbfallioCityId"
+                            "apiAbfallioCityId",
+                            "_apiAbfallioDistrictContext"
                         ],
-                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId ? '' : data.apiAbfallioDistrictId",
+                        "calculateFunc": "data.apiAbfallioDistrictId && data._apiAbfallioDistrictContext && data._apiAbfallioDistrictContext !== [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || '')].join('|') ? '' : data.apiAbfallioDistrictId",
                         "ignoreOwnChanges": true
                     },
                     "freeSolo": false,
@@ -302,6 +317,20 @@
                     "xl": 6,
                     "label": "District"
                 },
+                "_apiAbfallioDistrictContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId",
+                            "apiAbfallioDistrictId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioDistrictId ? [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || '')].join('|') : ''",
+                        "ignoreOwnChanges": true
+                    }
+                },
                 "apiAbfallioStreetId": {
                     "newLine": true,
                     "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || (data.apiAbfallioProvider !== 'essen' && (!data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err'))",
@@ -312,9 +341,10 @@
                         "alsoDependsOn": [
                             "apiAbfallioProvider",
                             "apiAbfallioCityId",
-                            "apiAbfallioDistrictId"
+                            "apiAbfallioDistrictId",
+                            "_apiAbfallioStreetContext"
                         ],
-                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId || data.apiAbfallioDistrictId !== originalData.apiAbfallioDistrictId ? '' : data.apiAbfallioStreetId",
+                        "calculateFunc": "data.apiAbfallioStreetId && data._apiAbfallioStreetContext && data._apiAbfallioStreetContext !== [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || ''), String(data.apiAbfallioDistrictId || '')].join('|') ? '' : data.apiAbfallioStreetId",
                         "ignoreOwnChanges": true
                     },
                     "freeSolo": false,
@@ -330,6 +360,21 @@
                     "xl": 6,
                     "label": "Street"
                 },
+                "_apiAbfallioStreetContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId",
+                            "apiAbfallioDistrictId",
+                            "apiAbfallioStreetId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioStreetId ? [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || ''), String(data.apiAbfallioDistrictId || '')].join('|') : ''",
+                        "ignoreOwnChanges": true
+                    }
+                },
                 "apiAbfallioHouseNumber": {
                     "newLine": true,
                     "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || (data.apiAbfallioProvider !== 'essen' && (!data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err')) || !data.apiAbfallioStreetId || data.apiAbfallioStreetId === 'err'",
@@ -341,9 +386,10 @@
                             "apiAbfallioProvider",
                             "apiAbfallioCityId",
                             "apiAbfallioDistrictId",
-                            "apiAbfallioStreetId"
+                            "apiAbfallioStreetId",
+                            "_apiAbfallioHouseNumberContext"
                         ],
-                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId || data.apiAbfallioDistrictId !== originalData.apiAbfallioDistrictId || data.apiAbfallioStreetId !== originalData.apiAbfallioStreetId ? '' : data.apiAbfallioHouseNumber",
+                        "calculateFunc": "data.apiAbfallioHouseNumber && data._apiAbfallioHouseNumberContext && data._apiAbfallioHouseNumberContext !== [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || ''), String(data.apiAbfallioDistrictId || ''), String(data.apiAbfallioStreetId || '')].join('|') ? '' : data.apiAbfallioHouseNumber",
                         "ignoreOwnChanges": true
                     },
                     "freeSolo": false,
@@ -359,6 +405,22 @@
                     "lg": 6,
                     "xl": 6,
                     "label": "House No."
+                },
+                "_apiAbfallioHouseNumberContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId",
+                            "apiAbfallioDistrictId",
+                            "apiAbfallioStreetId",
+                            "apiAbfallioHouseNumber"
+                        ],
+                        "calculateFunc": "data.apiAbfallioHouseNumber ? [String(data.apiAbfallioProvider || ''), String(data.apiAbfallioCityId || ''), String(data.apiAbfallioDistrictId || ''), String(data.apiAbfallioStreetId || '')].join('|') : ''",
+                        "ignoreOwnChanges": true
+                    }
                 },
                 "_apiAbfallioTypes": {
                     "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || !data.apiAbfallioHouseNumber || data.apiAbfallioHouseNumber === 'err'",
