@@ -927,7 +927,10 @@ class Trashschedule extends utils.Adapter {
 
                     if (source) {
                         const response = await source.getApiProviders();
-                        const providers = response.map(p => ({ value: p.id, label: `${p.title} (${p.url})` }));
+                        const providers = (response ?? []).map(p => ({
+                            value: String(p.id),
+                            label: `${String(p.title)} (${String(p.url)})`,
+                        }));
 
                         if (providers) {
                             this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(providers)}`);
@@ -958,7 +961,10 @@ class Trashschedule extends utils.Adapter {
 
                         if (provider) {
                             const response = await source.getApiCities(provider);
-                            const cities = response.map(c => ({ value: `${c.id}`, label: c.name }));
+                            const cities = (response ?? []).map(c => ({
+                                value: `${c.id}`,
+                                label: String(c.name),
+                            }));
 
                             if (cities) {
                                 this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(cities)}`);
@@ -1000,7 +1006,10 @@ class Trashschedule extends utils.Adapter {
 
                         if (provider && cityId) {
                             const response = await source.getApiDistricts(provider, cityId);
-                            const districts = response.map(d => ({ value: `${d.id}`, label: d.name }));
+                            const districts = (response ?? []).map(d => ({
+                                value: `${d.id}`,
+                                label: String(d.name),
+                            }));
 
                             if (districts) {
                                 this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(districts)}`);
@@ -1043,7 +1052,10 @@ class Trashschedule extends utils.Adapter {
 
                         if (provider && cityId) {
                             const response = await source.getApiStreets(provider, cityId, districtId);
-                            const streets = response.map(s => ({ value: `${s.id}`, label: s.name }));
+                            const streets = (response ?? []).map(s => ({
+                                value: `${s.id}`,
+                                label: String(s.name),
+                            }));
 
                             if (streets) {
                                 this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(streets)}`);
@@ -1085,9 +1097,12 @@ class Trashschedule extends utils.Adapter {
                         const districtId = obj.message?.districtId;
                         const streetId = obj.message?.streetId;
 
-                        if (provider && cityId && districtId && streetId) {
+                        if (provider && cityId && streetId) {
                             const response = await source.getApiHouseNumbers(provider, cityId, districtId, streetId);
-                            const houseNumbers = response.map(h => ({ value: `${h.id}`, label: h.name }));
+                            const houseNumbers = (response ?? []).map(h => ({
+                                value: `${h.id}`,
+                                label: String(h.name),
+                            }));
 
                             if (houseNumbers) {
                                 this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(houseNumbers)}`);

@@ -271,7 +271,7 @@
                 },
                 "apiAbfallioDistrictId": {
                     "newLine": true,
-                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err'",
+                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || data.apiAbfallioProvider === 'essen'",
                     "type": "autocompleteSendTo",
                     "command": "getApiDistricts",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\"}",
@@ -289,7 +289,7 @@
                 },
                 "apiAbfallioStreetId": {
                     "newLine": true,
-                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || !data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err'",
+                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || (data.apiAbfallioProvider !== 'essen' && (!data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err'))",
                     "type": "autocompleteSendTo",
                     "command": "getApiStreets",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"districtId\": \"${data.apiAbfallioDistrictId}\"}",
@@ -308,7 +308,7 @@
                 },
                 "apiAbfallioHouseNumber": {
                     "newLine": true,
-                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || !data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err' || !data.apiAbfallioStreetId || data.apiAbfallioStreetId === 'err'",
+                    "hidden": "!data.apiAbfallioProvider || data.apiAbfallioProvider === 'err' || !data.apiAbfallioCityId || data.apiAbfallioCityId === 'err' || (data.apiAbfallioProvider !== 'essen' && (!data.apiAbfallioDistrictId || data.apiAbfallioDistrictId === 'err')) || !data.apiAbfallioStreetId || data.apiAbfallioStreetId === 'err'",
                     "type": "autocompleteSendTo",
                     "command": "getApiHouseNumbers",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"districtId\": \"${data.apiAbfallioDistrictId}\", \"streetId\": \"${data.apiAbfallioStreetId}\"}",
