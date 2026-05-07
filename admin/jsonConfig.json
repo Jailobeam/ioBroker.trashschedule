@@ -332,10 +332,12 @@
                     "container": "text",
                     "copyToClipboard": true,
                     "command": "getApiTypesText",
-                    "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"houseNumber\": \"${data.apiAbfallioHouseNumber}\"}",
+                    "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"districtId\": \"${data.apiAbfallioDistrictId}\", \"streetId\": \"${data.apiAbfallioStreetId}\", \"houseNumber\": \"${data.apiAbfallioHouseNumber}\"}",
                     "alsoDependsOn": [
                         "apiAbfallioProvider",
                         "apiAbfallioCityId",
+                        "apiAbfallioDistrictId",
+                        "apiAbfallioStreetId",
                         "apiAbfallioHouseNumber"
                     ],
                     "xs": 12,
