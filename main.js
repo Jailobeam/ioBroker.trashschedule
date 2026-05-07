@@ -1100,7 +1100,7 @@ class Trashschedule extends utils.Adapter {
                         if (provider && cityId && streetId) {
                             const response = await source.getApiHouseNumbers(provider, cityId, districtId, streetId);
                             const houseNumbers = (response ?? []).map(h => ({
-                                value: `${h.id}`,
+                                value: String(h.name),
                                 label: String(h.name),
                             }));
 
