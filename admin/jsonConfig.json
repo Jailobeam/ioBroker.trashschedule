@@ -258,6 +258,13 @@
                     "type": "autocompleteSendTo",
                     "command": "getApiCities",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider"
+                        ],
+                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider ? '' : data.apiAbfallioCityId",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiAbfallioProvider"
@@ -275,6 +282,14 @@
                     "type": "autocompleteSendTo",
                     "command": "getApiDistricts",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId ? '' : data.apiAbfallioDistrictId",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiAbfallioProvider",
@@ -293,6 +308,15 @@
                     "type": "autocompleteSendTo",
                     "command": "getApiStreets",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"districtId\": \"${data.apiAbfallioDistrictId}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId",
+                            "apiAbfallioDistrictId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId || data.apiAbfallioDistrictId !== originalData.apiAbfallioDistrictId ? '' : data.apiAbfallioStreetId",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiAbfallioProvider",
@@ -312,6 +336,16 @@
                     "type": "autocompleteSendTo",
                     "command": "getApiHouseNumbers",
                     "jsonData": "{\"source\": \"api-abfallio\", \"provider\": \"${data.apiAbfallioProvider}\", \"cityId\": \"${data.apiAbfallioCityId}\", \"districtId\": \"${data.apiAbfallioDistrictId}\", \"streetId\": \"${data.apiAbfallioStreetId}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiAbfallioProvider",
+                            "apiAbfallioCityId",
+                            "apiAbfallioDistrictId",
+                            "apiAbfallioStreetId"
+                        ],
+                        "calculateFunc": "data.apiAbfallioProvider !== originalData.apiAbfallioProvider || data.apiAbfallioCityId !== originalData.apiAbfallioCityId || data.apiAbfallioDistrictId !== originalData.apiAbfallioDistrictId || data.apiAbfallioStreetId !== originalData.apiAbfallioStreetId ? '' : data.apiAbfallioHouseNumber",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiAbfallioProvider",
