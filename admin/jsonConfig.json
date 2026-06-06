@@ -570,6 +570,14 @@
                     "type": "autocompleteSendTo",
                     "command": "getApiDistricts",
                     "jsonData": "{\"source\": \"api-lobbe\", \"provider\": \"lobbe\", \"cityId\": \"${data.apiLobbeStateId}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiLobbeStateId",
+                            "_apiLobbeCityContext"
+                        ],
+                        "calculateFunc": "data.apiLobbeCityId && data._apiLobbeCityContext && data._apiLobbeCityContext !== String(data.apiLobbeStateId || '') ? '' : data.apiLobbeCityId",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiLobbeStateId"
@@ -581,12 +589,34 @@
                     "xl": 6,
                     "label": "Ort"
                 },
+                "_apiLobbeCityContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiLobbeStateId",
+                            "apiLobbeCityId"
+                        ],
+                        "calculateFunc": "data.apiLobbeCityId ? String(data.apiLobbeStateId || '') : ''",
+                        "ignoreOwnChanges": true
+                    }
+                },
                 "apiLobbeStreetId": {
                     "newLine": true,
                     "hidden": "!data.apiLobbeStateId || data.apiLobbeStateId === 'err' || !data.apiLobbeCityId || data.apiLobbeCityId === 'err'",
                     "type": "autocompleteSendTo",
                     "command": "getApiStreets",
                     "jsonData": "{\"source\": \"api-lobbe\", \"provider\": \"lobbe\", \"cityId\": \"${data.apiLobbeStateId}\", \"districtId\": \"${data.apiLobbeCityId}\"}",
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiLobbeStateId",
+                            "apiLobbeCityId",
+                            "_apiLobbeStreetContext"
+                        ],
+                        "calculateFunc": "data.apiLobbeStreetId && data._apiLobbeStreetContext && data._apiLobbeStreetContext !== [String(data.apiLobbeStateId || ''), String(data.apiLobbeCityId || '')].join('|') ? '' : data.apiLobbeStreetId",
+                        "ignoreOwnChanges": true
+                    },
                     "freeSolo": false,
                     "alsoDependsOn": [
                         "apiLobbeStateId",
@@ -598,6 +628,20 @@
                     "lg": 6,
                     "xl": 6,
                     "label": "Straße"
+                },
+                "_apiLobbeStreetContext": {
+                    "hidden": "true",
+                    "type": "text",
+                    "doNotSave": true,
+                    "onChange": {
+                        "alsoDependsOn": [
+                            "apiLobbeStateId",
+                            "apiLobbeCityId",
+                            "apiLobbeStreetId"
+                        ],
+                        "calculateFunc": "data.apiLobbeStreetId ? [String(data.apiLobbeStateId || ''), String(data.apiLobbeCityId || '')].join('|') : ''",
+                        "ignoreOwnChanges": true
+                    }
                 },
                 "_apiLobbeTypes": {
                     "hidden": "!data.apiLobbeStateId || data.apiLobbeStateId === 'err' || !data.apiLobbeCityId || data.apiLobbeCityId === 'err' || !data.apiLobbeStreetId || data.apiLobbeStreetId === 'err'",
