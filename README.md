@@ -63,6 +63,7 @@ iobroker add trashschedule
 * (Jailobeam) Fixed stale `districtId` values after provider changes
 * (Jailobeam) Cleared dependent `abfall.io` fields in Admin UI on selection changes
 * (Jailobeam) Increased `Lobbe.app` timeout to `10000ms`
+* (Jailobeam) Fixed invalid `Lobbe.app` street caches
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 
 ### 5.3.0 (2026-04-22)
