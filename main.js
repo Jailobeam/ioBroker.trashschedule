@@ -918,7 +918,27 @@ class Trashschedule extends utils.Adapter {
     async onMessage(obj) {
         if (obj) {
             this.log.debug(`[onMessage] ${obj.command}, ${obj.from}, ${JSON.stringify(obj.message)}`);
-            if (obj.command === 'getApiProviders') {
+            if (obj.command === 'reloadLobbeAddresses') {
+                try {
+                    const source = this.sources['api-lobbe'];
+                    if (!source) {
+                        throw new Error('Lobbe source is not ready');
+                    }
+                    await source.clearAddressCache();
+                    obj.callback && this.sendTo(obj.from, obj.command, {
+                        native: {
+                            apiLobbeStateId: '',
+                            apiLobbeCityId: '',
+                            apiLobbeStreetId: '',
+                            _apiLobbeCityContext: '',
+                            _apiLobbeStreetContext: '',
+                        },
+                    }, obj.callback);
+                } catch (err) {
+                    this.log.error(`[onMessage] ${obj.command}: ${err}`);
+                    obj.callback && this.sendTo(obj.from, obj.command, { error: String(err) }, obj.callback);
+                }
+            } else if (obj.command === 'getApiProviders') {
                 try {
                     const source = this.sources[obj.message?.source];
 

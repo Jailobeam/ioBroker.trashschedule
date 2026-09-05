@@ -564,6 +564,19 @@
                     "xl": 6,
                     "label": "Bundesland"
                 },
+                "_reloadLobbeAddresses": {
+                    "type": "sendTo",
+                    "command": "reloadLobbeAddresses",
+                    "label": {"de": "Lobbe-Daten neu laden", "en": "Reload Lobbe data"},
+                    "useNative": true,
+                    "showProcess": true,
+                    "variant": "outlined",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "xl": 6
+                },
                 "apiLobbeCityId": {
                     "newLine": true,
                     "hidden": "!data.apiLobbeStateId || data.apiLobbeStateId === 'err'",
