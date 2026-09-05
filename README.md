@@ -65,6 +65,7 @@ iobroker add trashschedule
 * (Jailobeam) Increased `Lobbe.app` timeout to `10000ms`
 * (Jailobeam) Fixed invalid `Lobbe.app` street caches
 * (Jailobeam) Refresh invalid Lobbe.app address caches for states, towns and streets
+* (Jailobeam) Reload empty Lobbe.app address caches
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 
 ### 5.3.0 (2026-04-22)
